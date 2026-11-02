@@ -57,6 +57,8 @@ python -m venv .venv
 
 ## Development
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, pull requests, and reporting problems without exposing account details.
+
 ```powershell
 .venv\Scripts\python -m pytest
 .venv\Scripts\python -m ruff check .
