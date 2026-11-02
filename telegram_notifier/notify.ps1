@@ -63,9 +63,11 @@ public static class TelegramNotificationIdentity {
     [Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType=WindowsRuntime] > $null
     [Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType=WindowsRuntime] > $null
     $notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier($appId)
-    $setting = $notifier.Setting.ToString()
-    if ($setting -ne 'Enabled') {
-        throw "Windows notifications are blocked ($setting). Check Settings > System > Notifications."
+    if ($null -ne $notifier.Setting) {
+        $setting = $notifier.Setting.ToString()
+        if ($setting -ne 'Enabled') {
+            throw "Windows notifications are blocked ($setting). Check Settings > System > Notifications."
+        }
     }
     $xml = New-Object Windows.Data.Xml.Dom.XmlDocument
     $xml.LoadXml($config.xml)
