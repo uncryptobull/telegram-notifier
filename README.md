@@ -4,7 +4,15 @@ A small Windows application that notifies you when a selected Telegram contact c
 
 ## Download and run
 
-Download the Windows ZIP from this repository's Releases page, extract the entire folder, and open **TelegramNotifier.exe**. Python is included. No command window or administrator access is required.
+**[Download Telegram Notifier for Windows (64-bit)](https://github.com/uncryptobull/telegram-notifier/releases/download/v0.2.0/TelegramNotifier-0.2.0-windows-x64.zip)**
+
+1. Download **TelegramNotifier-0.2.0-windows-x64.zip** using the link above or the [Releases page](https://github.com/uncryptobull/telegram-notifier/releases/latest).
+2. Right-click the ZIP and select **Extract All**.
+3. Open the extracted **TelegramNotifier** folder and double-click **TelegramNotifier.exe**. Windows may display the filename as **TelegramNotifier** with type **Application** if extensions are hidden.
+
+Python is included. No command window or administrator access is required.
+
+GitHub's green **Code → Download ZIP** button downloads the source code, not the ready-to-run application. A folder named `telegram-notifier-main` containing `tests`, `tools`, and `run.pyw` is the source package; it does not contain the executable. The source, tests, and build configuration are published for inspection and development. Use the Windows release ZIP to run the app.
 
 The application is unsigned. Its source and build instructions are available here; check the release checksum before running a downloaded copy.
 
