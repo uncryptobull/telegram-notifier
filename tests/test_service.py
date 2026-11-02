@@ -141,6 +141,7 @@ def test_connect_mode_retains_session_in_memory_without_starting_watch():
         service.run()
     assert any(kind == "settings" and value.session == "sample-session" for kind, value in output)
     assert not any(kind == "watching" for kind, value in output)
+    assert any(kind == "setup_complete" for kind, value in output)
 
 
 def test_reconnection_uses_backoff_and_stops_after_success():

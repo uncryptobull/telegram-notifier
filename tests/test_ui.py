@@ -15,6 +15,11 @@ def test_demo_opens_without_loading_or_saving_real_profile():
     app.save_preferences()
     store.read.assert_not_called()
     store.write.assert_not_called()
+    app.emit("setup_complete")
+    app.emit("finished")
+    app._drain()
+    assert app.status.get() == "Ready to monitor"
+    assert "Monitoring stopped" not in app.contact_status.get()
     app.destroy()
 
 

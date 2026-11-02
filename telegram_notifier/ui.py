@@ -28,6 +28,7 @@ class Application(tk.Tk):
         self.bot_name = None
         self.account_name = "Not connected"
         self.monitoring = False
+        self.setup_complete = False
         self.settings = Settings()
         load_failed = False
         if not demo:
@@ -337,6 +338,7 @@ class Application(tk.Tk):
                 self.tabs.select(self.account_tab)
             return
         self.settings = cfg
+        self.setup_complete = False
         self._busy(True)
         self.service = Service(cfg, self.fields["phone"].get().strip(), self.emit, mode)
         self.service.start()
@@ -533,14 +535,23 @@ class Application(tk.Tk):
                         future.set_result(answer)
             elif kind == "signed_out":
                 self.forget()
+            elif kind == "setup_complete":
+                self.setup_complete = True
+                self.tabs.select(self.monitor_tab)
+                self.contact_status.set("Account connected. Select a contact, then Start monitoring.")
             elif kind == "finished":
                 self.monitoring = False
                 self._busy(False)
                 self.status.set("Ready" if self.settings.session else "Not connected")
-                self.contact_status.set("Monitoring stopped")
-                self.write("Connection closed.")
-                if self.settings.session and self.service and self.service.mode == "connect":
-                    self.tabs.select(self.monitor_tab)
+                if self.setup_complete:
+                    self.status.set("Ready to monitor")
+                else:
+                    self.contact_status.set("Monitoring stopped")
+                    self.write(
+                        "Monitoring stopped."
+                        if self.service and self.service.mode == "watch"
+                        else "Setup connection ended."
+                    )
             elif kind in ("show", "start", "stop", "exit"):
                 getattr(self, kind)()
         if self.exiting and not (self.service and self.service.is_alive()):

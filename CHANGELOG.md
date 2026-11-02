@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+- Rebuilt using a standard Python distribution to remove environment-specific SSL and process-launch modifications from the portable application.
+- Clarified the transition from account setup to monitoring.
+- Added a credential-free delivery diagnostic mode.
+
 ## 0.2.0
 
 - Portable Windows application with no console dependency.

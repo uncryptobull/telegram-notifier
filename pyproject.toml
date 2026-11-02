@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "telegram-notifier-desktop"
-version = "0.2.0"
+version = "0.2.1"
 description = "Online and private-chat typing notifications for Windows"
 requires-python = ">=3.12"
 license = "MIT"

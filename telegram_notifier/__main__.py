@@ -17,7 +17,13 @@ def main():
         "--demo", action="store_true", help="Show sample data without connecting or saving anything"
     )
     parser.add_argument("--self-test", type=Path, metavar="REPORT", help=argparse.SUPPRESS)
+    parser.add_argument("--diagnose", type=Path, help=argparse.SUPPRESS)
     args = parser.parse_args()
+    if args.diagnose:
+        from .diagnostics import diagnose
+
+        args.diagnose.write_text(json.dumps(diagnose()), encoding="utf-8")
+        return
     if os.name != "nt":
         parser.error("Telegram Notifier requires Windows 10 or later.")
     for key, folder in [("TCL_LIBRARY", "tcl8.6"), ("TK_LIBRARY", "tk8.6")]:

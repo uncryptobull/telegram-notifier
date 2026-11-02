@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from telethon import TelegramClient, errors, events, types
 from telethon.sessions import StringSession
 
+from . import __version__
 from .bot import AlertBot, BotDeliveryError
 from .events import Gate
 from .windows import notify
@@ -109,7 +110,7 @@ class Service(threading.Thread):
             timeout=15,
             flood_sleep_threshold=0,
             device_model="Telegram Notifier",
-            app_version="0.2.0",
+            app_version=__version__,
         )
         try:
             self.emit("status", "Connecting…")
@@ -142,6 +143,7 @@ class Service(threading.Thread):
             )
             if self.mode == "connect":
                 self.emit("log", "Account connected. Choose a contact on the Monitor tab.")
+                self.emit("setup_complete", None)
                 return
             value = cfg.target.strip()
             target = await client.get_entity(int(value) if value.isdecimal() else value.lstrip("@"))
