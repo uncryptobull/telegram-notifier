@@ -14,7 +14,13 @@ Python is included. No command window or administrator access is required.
 
 GitHub's green **Code → Download ZIP** button downloads the source code, not the ready-to-run application. A folder named `telegram-notifier-main` containing `tests`, `tools`, and `run.pyw` is the source package; it does not contain the executable. The source, tests, and build configuration are published for inspection and development. Use the Windows release ZIP to run the app.
 
-The application is unsigned. Its source and build instructions are available here; check the release checksum before running a downloaded copy.
+### Windows first-launch warning
+
+This release is unsigned. Microsoft Defender SmartScreen may display **Windows protected your PC** and describe it as an unrecognized app. That prompt concerns download reputation and publisher recognition; it does not by itself establish whether a file is malicious or safe.
+
+Download from this repository's Releases page and compare the ZIP's SHA-256 checksum with the attached checksum file. A matching hash verifies that the file matches the published release, not that it is free of defects. The source and build instructions are available below.
+
+Trusted code signing is not configured for these releases. Signing would identify a verified publisher, but new signed applications can still receive reputation warnings. See [Microsoft's SmartScreen guidance](https://learn.microsoft.com/windows/apps/package-and-deploy/smartscreen-reputation).
 
 ## Set up
 
